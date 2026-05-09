@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Zach O'Connor favicon">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="100%" stop-color="#2ea043"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0d1117"/>
+  <path d="M64 18l34 14v26c0 24-14 41-34 52C44 99 30 82 30 58V32l34-14z" fill="url(#g)"/>
+  <path d="M52 63l8 8 18-20" fill="none" stroke="#0d1117" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
