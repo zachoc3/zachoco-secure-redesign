@@ -1,0 +1,62 @@
+name: Deploy website to AWS
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      S3_BUCKET: ${{ vars.S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          role-session-name: github-actions-zachoco-deploy
+
+      - name: Validate required variables
+        run: |
+          test -n "$S3_BUCKET"
+          test -n "$CLOUDFRONT_DISTRIBUTION_ID"
+
+      - name: Deploy HTML and root files
+        run: |
+          aws s3 sync . "s3://$S3_BUCKET" --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude ".DS_Store" \
+            --exclude ".git-test" \
+            --exclude "deploy-aws.sh" \
+            --exclude "cloudfront-security-policy.json" \
+            --exclude "aws-oidc-trust-policy.json" \
+            --exclude "aws-deploy-permissions-policy.json" \
+            --exclude "assets/*" \
+            --cache-control "max-age=60,public"
+
+      - name: Deploy static assets
+        run: |
+          aws s3 sync ./assets "s3://$S3_BUCKET/assets" --delete \
+            --cache-control "max-age=31536000,public,immutable"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"

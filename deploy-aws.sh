@@ -20,8 +20,10 @@ echo "Deploying website to s3://$BUCKET ..."
 # HTML/entry files: short cache so content updates quickly.
 aws s3 sync . "s3://$BUCKET" --delete \
   --exclude ".git/*" \
+  --exclude ".git-test" \
   --exclude ".DS_Store" \
   --exclude "deploy-aws.sh" \
+  --exclude "cloudfront-security-policy.json" \
   --exclude "assets/*" \
   --cache-control "max-age=60,public"
 

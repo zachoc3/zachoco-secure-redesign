@@ -69,6 +69,37 @@ Yes, it’s a good idea — not because you must manually upload files, but beca
 
 Best practice is GitHub Actions using AWS OIDC (no long-lived AWS keys) to run the same `aws s3 sync` commands on every push to `main`.
 
+## One-click secure deploys (GitHub Actions + OIDC)
+
+This repo now includes `.github/workflows/deploy.yml` so pushes to `main` auto-deploy to AWS.
+
+### 1) Create IAM OIDC provider (one-time, if not already present)
+
+In AWS IAM, add provider:
+- URL: `https://token.actions.githubusercontent.com`
+- Audience: `sts.amazonaws.com`
+
+### 2) Create IAM role for GitHub Actions
+
+Use `aws-oidc-trust-policy.json` as the trust relationship, then attach
+`aws-deploy-permissions-policy.json`.
+
+### 3) Set GitHub repo secret + variables
+
+In GitHub repo settings:
+- Secret: `AWS_DEPLOY_ROLE_ARN` = your role ARN
+- Variable: `S3_BUCKET` = `zachoco`
+- Variable: `CLOUDFRONT_DISTRIBUTION_ID` = `E13ZSBIKZY30W0`
+
+### 4) Push to `main`
+
+Every push auto-syncs S3 and invalidates CloudFront.
+
+### Header policy note
+
+`cloudfront-security-policy.json` is updated to `v2` and removes deprecated
+`X-XSS-Protection` while keeping strict modern headers.
+
 ## Security checklist
 
 - [ ] TLS enabled for all domains and redirects
