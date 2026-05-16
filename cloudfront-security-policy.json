@@ -1,5 +1,5 @@
 {
-  "Name": "zachoco-security-headers-v2",
+  "Name": "zachoco-security-headers-v3",
   "Comment": "Strict security headers for zachoco.com",
   "SecurityHeadersConfig": {
     "FrameOptions": {
@@ -21,7 +21,7 @@
     },
     "ContentSecurityPolicy": {
       "Override": true,
-      "ContentSecurityPolicy": "default-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests; block-all-mixed-content"
+      "ContentSecurityPolicy": "default-src 'self'; base-uri 'none'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests; block-all-mixed-content"
     }
   },
   "CustomHeadersConfig": {

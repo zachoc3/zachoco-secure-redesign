@@ -34,7 +34,18 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="/" aria-label="Zach O'Connor home">Zach O'Connor</a>
-        <nav aria-label="Primary">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="visually-hidden">Open menu</span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
           <ul class="nav-list">
             <li><a href="#about">About</a></li>
             <li><a href="#focus">Focus</a></li>
@@ -182,30 +193,92 @@
       </section>
 
       <section id="contact" class="section">
-        <div class="container">
-          <h2>Contact</h2>
-          <p>
-            Email:
-            <a href="mailto:zdoconnor@protonmail.com">zdoconnor@protonmail.com</a>
-          </p>
-          <p>
-            LinkedIn:
-            <a
-              href="https://www.linkedin.com/in/zachoco"
-              target="_blank"
-              rel="noopener noreferrer"
-              >linkedin.com/in/zachoco</a
+        <div class="container contact-layout">
+          <div class="contact-intro">
+            <h2>Contact</h2>
+            <p>
+              Send a message through the form below. Your email is not published on
+              this site.
+            </p>
+            <ul class="contact-links">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/zachoco"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/zachoco"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="contact-form-wrap">
+            <p id="contact-success" class="form-status" role="status" hidden>
+              Thanks — your message was sent. I will get back to you soon.
+            </p>
+            <form
+              class="contact-form"
+              action="https://api.web3forms.com/submit"
+              method="post"
             >
-          </p>
-          <p>
-            GitHub:
-            <a
-              href="https://github.com/zachoco"
-              target="_blank"
-              rel="noopener noreferrer"
-              >github.com/zachoco</a
-            >
-          </p>
+              <input
+                type="hidden"
+                name="access_key"
+                value="2dc2ed2b-649f-419a-ae79-ac8cc6e77923"
+              />
+              <input type="hidden" name="subject" value="Message from zachoco.com" />
+              <input type="hidden" name="from_name" value="zachoco.com contact form" />
+              <input
+                type="hidden"
+                name="redirect"
+                value="https://zachoco.com/?contact=sent#contact"
+              />
+              <label class="contact-honeypot" aria-hidden="true">
+                Leave blank
+                <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+              </label>
+              <div class="form-field">
+                <label for="contact-name">Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  maxlength="120"
+                />
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Your email</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  maxlength="254"
+                />
+              </div>
+              <div class="form-field">
+                <label for="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows="5"
+                  maxlength="5000"
+                ></textarea>
+              </div>
+              <button class="button" type="submit">Send message</button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
