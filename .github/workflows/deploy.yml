@@ -56,6 +56,11 @@ jobs:
           aws s3 sync ./assets "s3://$S3_BUCKET/assets" --delete \
             --cache-control "max-age=31536000,public,immutable"
 
+      - name: Apply CloudFront security headers (CSP v3 for contact form)
+        run: |
+          chmod +x ./scripts/update-cloudfront-headers.sh
+          ./scripts/update-cloudfront-headers.sh
+
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \

@@ -25,9 +25,21 @@
       "Action": [
         "cloudfront:CreateInvalidation",
         "cloudfront:GetDistribution",
-        "cloudfront:GetDistributionConfig"
+        "cloudfront:GetDistributionConfig",
+        "cloudfront:UpdateDistribution"
       ],
       "Resource": "arn:aws:cloudfront::655311368493:distribution/E13ZSBIKZY30W0"
+    },
+    {
+      "Sid": "ManageCloudFrontSecurityHeaders",
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:CreateResponseHeadersPolicy",
+        "cloudfront:UpdateResponseHeadersPolicy",
+        "cloudfront:GetResponseHeadersPolicy",
+        "cloudfront:ListResponseHeadersPolicies"
+      ],
+      "Resource": "*"
     }
   ]
 }
