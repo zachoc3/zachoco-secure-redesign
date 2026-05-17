@@ -32,7 +32,23 @@ Then open `http://localhost:8080`.
 1. Deploy over HTTPS only (Netlify, Cloudflare Pages, Vercel, S3+CloudFront, etc.).
 2. Keep `_headers` active at the edge/CDN.
 3. Point DNS to the new deploy and enable HSTS preload when stable.
-4. Replace placeholder content and contact details.
+4. Configure the contact form and CloudFront CSP (see below).
+
+## Resume PDF
+
+Add your resume at `assets/resume.pdf` for the hero **Download resume** button. Until the file exists, that link will 404.
+
+## Contact form (Web3Forms)
+
+The site uses [Web3Forms](https://web3forms.com). Restrict submissions to `zachoco.com` in the dashboard.
+
+## CloudFront CSP (required)
+
+Your response headers policy must allow fonts and form API calls. Use this `Content-Security-Policy` value (or match `cloudfront-security-policy.json`):
+
+```
+default-src 'self'; base-uri 'none'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; img-src 'self' data:; font-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://api.web3forms.com; upgrade-insecure-requests; block-all-mixed-content
+```
 
 ## AWS S3 (easiest update)
 

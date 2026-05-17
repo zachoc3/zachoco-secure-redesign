@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zach O'Connor",
+  "url": "https://zachoco.com/",
+  "image": "https://zachoco.com/assets/profile.jpg",
+  "jobTitle": "Cybersecurity Engineer",
+  "description": "Cybersecurity engineer focused on secure architecture, resilient systems, and practical defense for critical infrastructure.",
+  "sameAs": [
+    "https://www.linkedin.com/in/zachoco",
+    "https://github.com/zachoco"
+  ]
+}

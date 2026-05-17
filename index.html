@@ -9,6 +9,7 @@
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href="https://zachoco.com/" />
     <title>Zach O'Connor | Cybersecurity Engineer</title>
     <meta property="og:title" content="Zach O'Connor | Cybersecurity Engineer" />
     <meta
@@ -26,7 +27,9 @@
     />
     <meta name="twitter:image" content="https://zachoco.com/assets/profile.jpg" />
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="./assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json" src="./assets/schema-person.json"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -47,11 +50,11 @@
         </button>
         <nav id="primary-nav" class="primary-nav" aria-label="Primary">
           <ul class="nav-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#focus">Focus</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certs">Certs</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" data-nav="about">About</a></li>
+            <li><a href="#focus" data-nav="focus">Focus</a></li>
+            <li><a href="#experience" data-nav="experience">Experience</a></li>
+            <li><a href="#certs" data-nav="certs">Certs</a></li>
+            <li><a href="#contact" data-nav="contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -61,20 +64,28 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <p class="kicker">Cybersecurity Engineering</p>
+            <p class="section-kicker">Cybersecurity Engineering</p>
             <h1>Building secure, resilient systems for critical environments.</h1>
             <p class="hero-copy">
               Cybersecurity Engineer with 7+ years across software, infrastructure,
-              and network defense. Focused on practical security architecture,
-              proactive risk reduction, and incident-ready operations.
+              and network defense — helping utilities, financial services, and enterprise
+              teams reduce risk with practical architecture and incident-ready operations.
             </p>
             <div class="hero-actions">
-              <a class="button" href="#contact">Connect</a>
+              <a class="button" href="#contact">Get in touch</a>
               <a
                 class="button button-secondary"
+                href="./assets/resume.pdf"
+                download
+              >
+                Download resume
+              </a>
+              <a
+                class="button button-secondary external-link"
                 href="https://www.linkedin.com/in/zachoco"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn profile (opens in new tab)"
                 >LinkedIn</a
               >
             </div>
@@ -84,6 +95,8 @@
               class="profile-image"
               src="./assets/profile.jpg"
               alt="Zach O'Connor profile photo"
+              width="320"
+              height="320"
               loading="eager"
               decoding="async"
             />
@@ -94,27 +107,32 @@
         </div>
       </section>
 
-      <section class="section section-alt mini-stats">
-        <div class="container stats-grid">
-          <article class="stat">
-            <h2>7+ Years</h2>
-            <p>Cybersecurity and engineering experience</p>
-          </article>
-          <article class="stat">
-            <h2>Critical Sectors</h2>
-            <p>Utilities, financial services, enterprise infrastructure</p>
-          </article>
-          <article class="stat">
-            <h2>Security First</h2>
-            <p>Architecture, resilience, incident response, and compliance</p>
-          </article>
+      <section class="section section-alt mini-stats" aria-labelledby="stats-heading">
+        <div class="container">
+          <p class="section-kicker">At a glance</p>
+          <h2 id="stats-heading" class="section-title">Highlights</h2>
+          <div class="stats-grid">
+            <article class="stat">
+              <p class="stat-value">7+ Years</p>
+              <p class="stat-label">Cybersecurity and engineering experience</p>
+            </article>
+            <article class="stat">
+              <p class="stat-value">Critical Sectors</p>
+              <p class="stat-label">Utilities, financial services, enterprise infrastructure</p>
+            </article>
+            <article class="stat">
+              <p class="stat-value">Security First</p>
+              <p class="stat-label">Architecture, resilience, incident response, and compliance</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section id="about" class="section">
+      <section id="about" class="section" data-section="about">
         <div class="container">
-          <h2>About</h2>
-          <p>
+          <p class="section-kicker">Background</p>
+          <h2 class="section-title">About</h2>
+          <p class="section-lead">
             I'm a cybersecurity professional based in the United States. I work
             at the intersection of people, technology, and security to build
             systems that are both dependable and defensible.
@@ -122,9 +140,10 @@
         </div>
       </section>
 
-      <section id="focus" class="section section-alt">
+      <section id="focus" class="section section-alt" data-section="focus">
         <div class="container">
-          <h2>Security Focus Areas</h2>
+          <p class="section-kicker">Expertise</p>
+          <h2 class="section-title">Security Focus Areas</h2>
           <div class="cards">
             <article class="card">
               <h3>Architecture & Hardening</h3>
@@ -151,82 +170,135 @@
         </div>
       </section>
 
-      <section id="experience" class="section">
+      <section id="experience" class="section" data-section="experience">
         <div class="container">
-          <h2>Experience</h2>
-          <ul class="timeline">
-            <li>
-              <strong>Cybersecurity Engineer</strong> - Associated Electric Cooperative Inc.
-              <span>2026 - Present</span> - Incident response, secure architecture,
-              and resilience engineering
+          <p class="section-kicker">Career</p>
+          <h2 class="section-title">Experience</h2>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role">Cybersecurity Engineer</h3>
+                  <p class="timeline-org">Associated Electric Cooperative Inc.</p>
+                  <time class="timeline-date" datetime="2026">2026 – Present</time>
+                </div>
+                <p class="timeline-detail">
+                  Incident response, secure architecture, and resilience engineering.
+                </p>
+              </div>
             </li>
-            <li>
-              <strong>Network Security Engineer III</strong> - Jack Henry
-              <span>2025 - 2026</span>
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role">Network Security Engineer III</h3>
+                  <p class="timeline-org">Jack Henry</p>
+                  <time class="timeline-date" datetime="2025/2026">2025 – 2026</time>
+                </div>
+              </div>
             </li>
-            <li>
-              <strong>Network Security Engineer II</strong> - Jack Henry
-              <span>2023 - 2025</span>
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role">Network Security Engineer II</h3>
+                  <p class="timeline-org">Jack Henry</p>
+                  <time class="timeline-date" datetime="2023/2025">2023 – 2025</time>
+                </div>
+              </div>
             </li>
-            <li>
-              <strong>Programmer Analyst, Adv</strong> - Jack Henry
-              <span>2022</span>
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role">Programmer Analyst, Adv</h3>
+                  <p class="timeline-org">Jack Henry</p>
+                  <time class="timeline-date" datetime="2022">2022</time>
+                </div>
+              </div>
             </li>
-            <li>
-              <strong>Software Developer</strong> - Prime Inc.
-              <span>2018 - 2022</span>
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role">Software Developer</h3>
+                  <p class="timeline-org">Prime Inc.</p>
+                  <time class="timeline-date" datetime="2018/2022">2018 – 2022</time>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="certs" class="section section-alt" data-section="certs">
+        <div class="container">
+          <p class="section-kicker">Credentials</p>
+          <h2 class="section-title">Certifications</h2>
+          <ul class="cert-grid">
+            <li class="cert-badge">
+              <span class="cert-name">CompTIA CySA+</span>
+              <span class="cert-meta">Expires 2028</span>
+            </li>
+            <li class="cert-badge">
+              <span class="cert-name">CompTIA Security+</span>
+              <span class="cert-meta">Expires 2028</span>
+            </li>
+            <li class="cert-badge">
+              <span class="cert-name">CompTIA SecAI</span>
+            </li>
+            <li class="cert-badge">
+              <span class="cert-name">CompTIA CSAP</span>
             </li>
           </ul>
         </div>
       </section>
 
-      <section id="certs" class="section section-alt">
-        <div class="container">
-          <h2>Certifications</h2>
-          <ul class="cert-list">
-            <li>CompTIA CySA+ (expires 2028)</li>
-            <li>CompTIA Security+ (expires 2028)</li>
-            <li>CompTIA SecAI</li>
-            <li>CompTIA CSAP</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="contact" class="section">
+      <section id="contact" class="section" data-section="contact">
         <div class="container contact-layout">
           <div class="contact-intro">
-            <h2>Contact</h2>
-            <p>
-              Send a message through the form below. Your email is not published on
-              this site.
+            <p class="section-kicker">Reach out</p>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-lead">
+              Send a message below — I usually reply within a few business days.
             </p>
             <ul class="contact-links">
               <li>
                 <a
+                  class="external-link"
                   href="https://www.linkedin.com/in/zachoco"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn profile (opens in new tab)"
                   >LinkedIn</a
                 >
               </li>
               <li>
                 <a
+                  class="external-link"
                   href="https://github.com/zachoco"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub profile (opens in new tab)"
                   >GitHub</a
                 >
               </li>
             </ul>
           </div>
           <div class="contact-form-wrap">
-            <p id="contact-success" class="form-status" role="status" hidden>
+            <p id="contact-success" class="form-status form-status-success" role="status" hidden>
               Thanks — your message was sent. I will get back to you soon.
             </p>
+            <p id="contact-error" class="form-status form-status-error" role="alert" hidden>
+              Something went wrong. Please try again or message me on LinkedIn.
+            </p>
             <form
+              id="contact-form"
               class="contact-form"
               action="https://api.web3forms.com/submit"
               method="post"
+              novalidate
             >
               <input
                 type="hidden"
@@ -235,11 +307,7 @@
               />
               <input type="hidden" name="subject" value="Message from zachoco.com" />
               <input type="hidden" name="from_name" value="zachoco.com contact form" />
-              <input
-                type="hidden"
-                name="redirect"
-                value="https://zachoco.com/?contact=sent#contact"
-              />
+              <input type="hidden" name="redirect" value="https://zachoco.com/?contact=sent#contact" />
               <label class="contact-honeypot" aria-hidden="true">
                 Leave blank
                 <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
@@ -276,7 +344,7 @@
                   maxlength="5000"
                 ></textarea>
               </div>
-              <button class="button" type="submit">Send message</button>
+              <button class="button" type="submit" id="contact-submit">Send message</button>
             </form>
           </div>
         </div>
@@ -286,6 +354,26 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <small>&copy; <span id="current-year"></span> Zach O'Connor</small>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#contact">Contact</a>
+          <a
+            class="external-link"
+            href="https://www.linkedin.com/in/zachoco"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn (opens in new tab)"
+            >LinkedIn</a
+          >
+          <a
+            class="external-link"
+            href="https://github.com/zachoco"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub (opens in new tab)"
+            >GitHub</a
+          >
+          <a href="https://zachoco.com/.well-known/security.txt">Security</a>
+        </nav>
       </div>
     </footer>
 
